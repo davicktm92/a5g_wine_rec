@@ -1,0 +1,39 @@
+<launch>
+
+  <!-- package for tf publisher for world frame (base of arm) to robot_base_link -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_base_link" args="0 0 0.3 0 0 0 robot_base_link world 100" />
+  
+  <!-- package for tf publisher for imu_link to robot_base_link -->
+  <!--n1ode pkg="tf" type="static_transform_publisher" name="imu_to_base_link" args="0.17 0.17 0.2 0 0 0 base_link imu_link 100" /-->
+  
+  <!-- launch of the IMU-->
+  <!--include file="$(find ros_imu_bno055)/launch/imu.launch" /-->
+  
+  <!-- z1 arm launch with namespace to avoid robot description errors-->
+  <group ns="z1_arm">
+   <include file="$(find z1_bringup)/launch/real_arm.launch" />
+   <include file="$(find urg_node)/launch/urg_lidar.launch" />
+  </group>
+
+  <!-- micasense node -->
+  <node name="micasense_ros" pkg="micasense" type="micasense_stream_light.py" output="screen"/>
+
+  <!-- pointcloud generator -->
+  <node name="laser3d_scan" pkg="laser3d_scan" type="localpc_generator.py" output="screen"/>
+  
+  <!-- optrx node -->
+  <!--node name="optrx_node" pkg="optrx_sensor" type="optrx.py" output="screen"/-->
+  
+  <!-- logitech orbit camera -->
+  <node name="logitech_node" pkg="optrx_sensor" type="front_camera.py" output="screen"/>
+  
+  <!-- sequence for data acquisition -->
+  <node name="data_acquisition" pkg="laser3d_scan" type="data_acquisition_light.py" output="screen"/>
+  
+  <!-- sequence for spectral image save -->
+  <node name="spectral_save" pkg="micasense" type="spectral_save.py" output="screen"/>
+  
+  <!-- ftp upload of data -->
+  <node name="ftp_upload" pkg="laser3d_scan" type="ftp_upload.py" output="screen"/>
+  
+</launch>

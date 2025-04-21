@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+ 
+ <!-- NODO PARA lanzamiento del GPS-->
+ <include file="$(find ublox_gps)/launch/ublox_device.launch" />
+ 
+ <!-- NODO PARA lanzamiento del modem NTRIP-->
+ <include file="$(find ntrip_client)/launch/ntrip_client.launch" />
+
+</launch>
