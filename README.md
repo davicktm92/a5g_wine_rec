@@ -1,8 +1,8 @@
 # Agro 5G Vineyard 3D reconstruction and multiespectral imagery acquisition
 
-Packages for **a5g_wine_rec** repository! This project focuses on developing cutting-edge algorithms and software tools for precision agriculture using ROS.
+Packages for **a5g_wine_rec** repository! This project focuses on developing cutting-edge algorithms and software tools for precision agriculture using ROS.  
 
-
+<img src="images/agro1.jpg" alt="Mapa del entorno" width="400" height="300"/> <img src="images/agro2.png" alt="Mapa del entorno2" width="400" height="300"/>
 
 ## agro5g_arm
 Main launch for Z1 arm, Micasense multispectral camera, LiDAR, reconstruction and front camera.  
